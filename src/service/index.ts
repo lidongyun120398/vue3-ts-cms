@@ -7,6 +7,14 @@ const hyRequest = new HYRequest({
   timeout: TIME_OUT,
   interceptors: {
     requestInterceptor: (config) => {
+      //携带token的拦截
+      const token = ''
+      if (token) {
+        if (config.headers) {
+          config.headers.Authorization = `Bearer ${token}`
+        }
+      }
+
       return config
     },
     requestInterceptorCatch: (error) => {

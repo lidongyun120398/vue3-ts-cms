@@ -25,6 +25,22 @@ console.log(process.env.VUE_APP_BASE_NAME)
 
 hyRequest.request({
   url: '/home/multidata',
-  method: 'GET'
+  method: 'GET',
+  interceptors: {
+    requestInterceptor: (config) => {
+      console.log('单独请求的config')
+      return config
+    },
+    requestInterceptorCatch: (err) => {
+      return err
+    },
+    responseInterceptor: (res) => {
+      console.log('单独相应的response')
+      return res
+    },
+    responseInterceptorCatch: (err) => {
+      return err
+    }
+  }
 })
 // hyRequest.get()
