@@ -3,5 +3,8 @@ module.exports = {
   // presets: ['@vue/cli-plugin-babel/preset'],
   //配置可选链的plugin不好使以后presets变成了下面这种
   presets: ['@vue/app'],
-  plugins: ['@babel/plugin-proposal-optional-chaining']
+  plugins: [
+    '@babel/plugin-proposal-optional-chaining', // 可选链 ?.
+    '@babel/plugin-proposal-nullish-coalescing-operator' // 空值合并 ??
+  ]
 }

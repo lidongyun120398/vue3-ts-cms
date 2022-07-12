@@ -1,4 +1,6 @@
 import { createApp } from 'vue'
+import 'normalize.css'
+import './assets/css/index.less'
 
 // import './service/axios_demo'
 import hyRequest from './service'
@@ -23,24 +25,47 @@ console.log(process.env)
 console.log(process.env.VUE_APP_BASE_URL)
 console.log(process.env.VUE_APP_BASE_NAME)
 
-hyRequest.request({
-  url: '/home/multidata',
-  method: 'GET',
-  interceptors: {
-    requestInterceptor: (config) => {
-      console.log('单独请求的config')
-      return config
-    },
-    requestInterceptorCatch: (err) => {
-      return err
-    },
-    responseInterceptor: (res) => {
-      console.log('单独相应的response')
-      return res
-    },
-    responseInterceptorCatch: (err) => {
-      return err
-    }
-  }
-})
+interface DataType {
+  data: any
+  returnCode: string
+  success: boolean
+}
+
+// hyRequest
+//   .request<DataType>({
+//     url: '/home/multidata',
+//     method: 'GET',
+//     // interceptors: {
+//     //   requestInterceptor: (config) => {
+//     //     console.log('单独请求的config')
+//     //     return config
+//     //   },
+//     //   requestInterceptorCatch: (err) => {
+//     //     return err
+//     //   },
+//     //   responseInterceptor: (res) => {
+//     //     console.log('单独相应的response')
+//     //     return res
+//     //   },
+//     //   responseInterceptorCatch: (err) => {
+//     //     return err
+//     //   }
+//     // }
+//     showLoading: false
+//   })
+//   .then((res) => {
+//     console.log(res.data)
+//     console.log(res.returnCode)
+//     console.log(res.success)
+//   })
+hyRequest
+  .request<DataType>({
+    url: '/home/multidata',
+    showLoading: false
+  })
+  .then((res) => {
+    console.log(res.data)
+    console.log(res.returnCode)
+    console.log(res.success)
+  })
 // hyRequest.get()
