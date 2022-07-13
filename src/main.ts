@@ -8,6 +8,7 @@ import hyRequest from './service'
 // 全局引入ui库
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
+import * as ElIcons from '@element-plus/icons-vue'
 
 import App from './App.vue'
 
@@ -19,6 +20,10 @@ app.use(router)
 app.use(store)
 app.use(ElementPlus)
 app.mount('#app')
+// const app = createApp(App)
+for (const name in ElIcons) {
+  app.component(name, (ElIcons as any)[name])
+}
 
 // createApp(App).mount('#app')
 console.log(process.env)
