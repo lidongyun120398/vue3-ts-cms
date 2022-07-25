@@ -26,15 +26,15 @@ for (const name in ElIcons) {
 }
 
 // createApp(App).mount('#app')
-console.log(process.env)
-console.log(process.env.VUE_APP_BASE_URL)
-console.log(process.env.VUE_APP_BASE_NAME)
+// console.log(process.env)
+// console.log(process.env.VUE_APP_BASE_URL)
+// console.log(process.env.VUE_APP_BASE_NAME)
 
-interface DataType {
-  data: any
-  returnCode: string
-  success: boolean
-}
+// interface DataType {
+//   data: any
+//   returnCode: string
+//   success: boolean
+// }
 
 // hyRequest
 //   .request<DataType>({
@@ -63,14 +63,14 @@ interface DataType {
 //     console.log(res.returnCode)
 //     console.log(res.success)
 //   })
-hyRequest
-  .request<DataType>({
-    url: '/home/multidata',
-    showLoading: false
-  })
-  .then((res) => {
-    console.log(res.data)
-    console.log(res.returnCode)
-    console.log(res.success)
-  })
+// hyRequest
+//   .request<DataType>({
+//     url: '/home/multidata',
+//     showLoading: false
+//   })
+//   .then((res) => {
+//     console.log(res.data)
+//     console.log(res.returnCode)
+//     console.log(res.success)
+//   })
 // hyRequest.get()

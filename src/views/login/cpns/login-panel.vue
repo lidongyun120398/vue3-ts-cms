@@ -9,7 +9,7 @@
             <span>账号登录</span>
           </span>
         </template>
-        <login-account />
+        <login-account ref="accountRef" />
       </el-tab-pane>
       <el-tab-pane>
         <template #label>
@@ -27,7 +27,9 @@
       <el-link type="primary">忘记密码</el-link>
     </div>
 
-    <el-button type="primary" class="login-btn">立即登录</el-button>
+    <el-button type="primary" class="login-btn" @click="handleLoginClick"
+      >立即登录</el-button
+    >
   </div>
 </template>
 
@@ -43,9 +45,17 @@ export default defineComponent({
   },
   setup() {
     const isKeepPassWord = ref(true)
+    const accountRef = ref<InstanceType<typeof loginAccount>>()
+
+    const handleLoginClick = () => {
+      console.log('立即登录')
+      accountRef.value?.loginAction(isKeepPassWord.value)
+    }
 
     return {
-      isKeepPassWord
+      isKeepPassWord,
+      handleLoginClick,
+      accountRef
     }
   }
 })
@@ -59,6 +69,9 @@ export default defineComponent({
   .title {
     text-align: center;
   }
+  .demo-tabs {
+    height: 165px;
+  }
 
   .account-control {
     display: flex;
@@ -70,12 +83,5 @@ export default defineComponent({
     width: 100%;
     margin-top: 10px;
   }
-}
-
-.el-tabs--card ::v-deep .el-tabs__item {
-  margin: 1px 0 0 1px;
-}
-.el-tabs--card ::v-deep .el-tabs__header {
-  margin: 0;
 }
 </style>
