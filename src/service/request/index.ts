@@ -89,7 +89,6 @@ class HYRequest {
           if (config.interceptors?.responseInterceptor) {
             res = config.interceptors.responseInterceptor(res)
           }
-          console.log(res)
 
           //2.再将showLoading设置为true，这样不影响下一个请求
           this.showLoading = DEFAULT_LOADING
