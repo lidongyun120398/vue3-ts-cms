@@ -3,7 +3,7 @@ import 'normalize.css'
 import './assets/css/index.less'
 
 // import './service/axios_demo'
-import hyRequest from './service'
+// import hyRequest from './service'
 
 // 全局引入ui库
 import ElementPlus from 'element-plus'
