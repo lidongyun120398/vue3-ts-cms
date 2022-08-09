@@ -6,9 +6,11 @@
       </el-aside>
       <el-container class="page">
         <el-header class="page-header">
-          <nav-header @fold-change="handleFoldChange" />
+          <nav-header @foldChange="handleFoldChange" />
         </el-header>
-        <el-main class="page-content">Main</el-main>
+        <el-main class="page-content">
+          <router-view></router-view>
+        </el-main>
       </el-container>
     </el-container>
   </div>
@@ -27,12 +29,12 @@ export default defineComponent({
   setup() {
     const isCollapse = ref(false)
     const handleFoldChange = (isFold: boolean) => {
-      console.log(isFold)
       isCollapse.value = isFold
     }
+
     return {
-      handleFoldChange,
-      isCollapse
+      isCollapse,
+      handleFoldChange
     }
   }
 })
