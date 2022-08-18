@@ -33,13 +33,13 @@ const loginModule: Module<ILoginState, IRootState> = {
     changeUserMenus(state, userMenus: any) {
       state.userMenus = userMenus
 
-      // // userMenus => routes
-      // const routes = mapMenusToRoutes(userMenus)
+      // userMenus => routes
+      const routes = mapMenusToRoutes(userMenus)
 
-      // // 将routes => router.main.children
-      // routes.forEach((route) => {
-      //   router.addRoute('main', route)
-      // })
+      // 将routes => router.main.children
+      routes.forEach((route) => {
+        router.addRoute('main', route)
+      })
     }
   },
   actions: {
