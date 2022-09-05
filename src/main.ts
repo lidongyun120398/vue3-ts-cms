@@ -9,6 +9,7 @@ import './assets/css/index.less'
 import ElementPlus from 'element-plus'
 import 'element-plus/dist/index.css'
 import * as ElIcons from '@element-plus/icons-vue'
+import { globalRegister } from '@/global'
 
 import App from './App.vue'
 
@@ -17,12 +18,16 @@ import store from './store'
 import { setupStore } from './store'
 
 const app = createApp(App)
+
+app.use(globalRegister)
 app.use(store)
 setupStore()
 app.use(router)
 
 app.use(ElementPlus)
+
 app.mount('#app')
+
 // const app = createApp(App)
 for (const name in ElIcons) {
   app.component(name, (ElIcons as any)[name])

@@ -28,7 +28,7 @@
       "@/*": ["src/*"]
     },
     //可以指定在项目中可以使用哪些库的类型
-    "lib": ["esnext", "dom", "dom.iterable", "scripthost","es2017"]
+    "lib": ["esnext", "dom", "dom.iterable", "scripthost"]
   },
   //那些代码需要解析
   "include": [
