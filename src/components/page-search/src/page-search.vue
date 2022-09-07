@@ -9,7 +9,7 @@
           <el-button @click="handleResetClick"
             ><el-icon><Refresh /></el-icon>重置</el-button
           >
-          <el-button type="primary"
+          <el-button type="primary" @click="handleQueryClick"
             ><el-icon><Search /></el-icon>搜索</el-button
           >
         </div>
@@ -32,7 +32,8 @@ export default defineComponent({
   components: {
     HyForm
   },
-  setup(props) {
+  emits: ['resetBtnClick', 'queryBtnClick'],
+  setup(props, { emit }) {
     //双向绑定的属性应该是由配置文件的field来决定的
     //1.formData中的属性应该动态来决定
     const formItems = props.searchFormConfig?.formItems ?? []
@@ -52,12 +53,25 @@ export default defineComponent({
 
     //2.用户点击重置
     const handleResetClick = () => {
+      //双向绑定方法1
+      // for (const key in formOriginData) {
+      //   formData.value[`${key}`] = formOriginData[key]
+      // }
+
+      //方法二
       formData.value = formOriginData
+      emit('resetBtnClick')
+    }
+
+    //优化三：搜索实现
+    const handleQueryClick = () => {
+      emit('queryBtnClick', formData.value)
     }
 
     return {
       formData,
-      handleResetClick
+      handleResetClick,
+      handleQueryClick
     }
   }
 })

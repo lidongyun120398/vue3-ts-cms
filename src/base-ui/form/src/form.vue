@@ -19,16 +19,24 @@
                   :placeholder="item.placeholder"
                   v-bind="item.otherOptions"
                   :show-password="item.type === 'password'"
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:model-value="handleValueChange($event, item.field)"
                 />
+                <!-- 方法一 -->
+                <!-- v-model="formData[`${item.field}`]" -->
+                <!-- 方法二 -->
+                <!-- :model-value="modelValue[`${item.field}`]"
+                  @update:model-value="handleValueChange" -->
               </template>
               <template v-else-if="item.type === 'select'">
                 <el-select
                   :placeholder="item.placeholder"
                   v-bind="item.otherOptions"
                   style="width: 100%"
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:model-value="handleValueChange($event, item.field)"
                 >
+                  <!-- v-model="formData[`${item.field}`]" -->
                   <el-option
                     v-for="option in item.options"
                     :key="option.value"
@@ -41,8 +49,10 @@
                 <el-date-picker
                   style="width: 100%"
                   v-bind="item.otherOptions"
-                  v-model="formData[`${item.field}`]"
+                  :model-value="modelValue[`${item.field}`]"
+                  @update:model-value="handleValueChange($event, item.field)"
                 ></el-date-picker>
+                <!-- v-model="formData[`${item.field}`]" -->
               </template>
             </el-form-item>
           </el-col>
@@ -56,7 +66,7 @@
 </template>
 
 <script lang="ts">
-import { defineComponent, PropType, ref, watch } from 'vue'
+import { defineComponent, PropType } from 'vue'
 import { IFormItem } from '../types'
 
 export default defineComponent({
@@ -90,21 +100,20 @@ export default defineComponent({
   },
   emits: ['update:modelValue'],
   setup(props, { emit }) {
-    const formData = ref({ ...props.modelValue })
+    //双向绑定方法一
+    // const formData = ref({ ...props.modelValue })
+    // watch(formData, (newValue) => emit('update:modelValue', newValue), {
+    //   deep: true
+    // })
 
-    watch(
-      () => props.modelValue,
-      (newValue) => {
-        formData.value = { ...newValue }
-      }
-    )
-
-    watch(formData, (newValue) => emit('update:modelValue', newValue), {
-      deep: true
-    })
+    //方法二
+    const handleValueChange = (value: any, field: string) => {
+      emit('update:modelValue', { ...props.modelValue, [field]: value })
+    }
 
     return {
-      formData
+      // formData
+      handleValueChange
     }
   }
 })
